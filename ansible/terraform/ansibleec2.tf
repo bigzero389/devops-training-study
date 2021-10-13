@@ -5,7 +5,7 @@ provider "aws" {
 }
 
 # AWS용 리소스 구성
-resource "aws_instance" "dyheo-bastion-terraform" {
+resource "aws_instance" "dyheo-ansible-terraform" {
   ami = "ami-0e4a9ad2eb120e054"
   associate_public_ip_address = true
   instance_type = "t2.micro"
@@ -14,7 +14,7 @@ resource "aws_instance" "dyheo-bastion-terraform" {
   vpc_security_group_ids = ["sg-08210a767e39439ac"]
   subnet_id = "subnet-0b92fd86f003a4680"
   tags = {
-    Name = "dyheo-bastion-terraform"
+    Name = "dyheo-terraform-ansible"
   }
 
 # HelloWorld App Code
@@ -25,9 +25,9 @@ resource "aws_instance" "dyheo-bastion-terraform" {
       private_key = "${file("~/.ssh/dyheo-histech-2.pem")}"
     }
     inline = [
-      "sudo wget https://raw.githubusercontent.com/largezero/GitOps-k8s-test/main/secondproject/config.sh",
-      "sudo chmod 755 /home/ec2-user/config.sh",
-      "/home/ec2-user/config.sh"
+      "sudo yum install update",
+      "sudo yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm -y",
+      "sudo yum install git"
     ]
   }
 }

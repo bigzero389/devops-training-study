@@ -141,5 +141,10 @@ wget https://raw.githubusercontent.com/yogeshraheja/Effective-DevOps-with-AWS/ma
 ## Amazon Linux 2 epel enable
 sudo yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
 
-
-
+## Ansible note
+ansible-galaxy collection install amazon.aws # ansible amazon install ##?
+ansible --private-key ~/.ssh/dyheo-histech-2.pem ansible-test -m ping
+sudo vi /etc/ansible/host => [ansible-test] ip등록
+ansible --private-key ~/.ssh/dyheo-histech-2.pem '3.36.115.214' -a 'df -h'
+ansible-playbook helloworld.yml --private-key ~/.ssh/dyheo-histech-2.pem -e target='3.36.115.214' --list-hosts
+ansible-playbook helloworld.yml --private-key ~/.ssh/dyheo-histech-2.pem -e target='3.36.115.214' --check

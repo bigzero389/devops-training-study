@@ -3,8 +3,10 @@
 - name: Installing node and npm
   yum:
     name: "{{ item }}"
-    ebablerepo: epel
+    enablerepo: epel
     state: installed
-    with_items:
-      - nodejs
-      - npm
+  with_items:
+    - nodejs
+    - npm
+    
+
