@@ -148,3 +148,4 @@ sudo vi /etc/ansible/host => [ansible-test] ip등록
 ansible --private-key ~/.ssh/dyheo-histech-2.pem '3.36.115.214' -a 'df -h'
 ansible-playbook helloworld.yml --private-key ~/.ssh/dyheo-histech-2.pem -e target='3.36.115.214' --list-hosts
 ansible-playbook helloworld.yml --private-key ~/.ssh/dyheo-histech-2.pem -e target='3.36.115.214' --check
+ansible-playbook helloworld.yml --private-key ~/.ssh/dyheo-histech-2.pem -e target='3.36.115.214' # 실행.

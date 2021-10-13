@@ -3,7 +3,7 @@
 ## application download
 HOME_DIR="/home/ec2-user/"
 APP_NAME="helloworld.js"
-wget https://raw.githubusercontent.com/yogeshraheja/Effective-DevOps-with-AWS/master/Chapter02/helloworld.js -O ${HOME_DIR}${APP_NAME}
+#wget https://raw.githubusercontent.com/yogeshraheja/Effective-DevOps-with-AWS/master/Chapter02/helloworld.js -O ${HOME_DIR}${APP_NAME}
 
 ## service make & setting
 SERVICE_NAME="helloworld"

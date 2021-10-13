@@ -3,4 +3,5 @@
 - name: restart helloworld
   service:
     name: helloworld
-    statae: restarted
+    enabled: yes
+    state: restarted
