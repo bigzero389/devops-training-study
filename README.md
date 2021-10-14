@@ -141,6 +141,8 @@ wget https://raw.githubusercontent.com/yogeshraheja/Effective-DevOps-with-AWS/ma
 ## Amazon Linux 2 epel enable
 https://thecodecloud.in/ansible-installation-configuration-amazon-linux-ec2-instance-aws/  
 ```
+sudo yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+
 $ wget https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
 $ sudo yum install epel-release-latest-7.noarch.rpm -y
 $ sudo yum update -y
