@@ -76,6 +76,7 @@ Tag(s): $thinking
 ### 이미지 복사 붙여넣기
 
 ![[./_resources/Evernote_to_Markdown_Test.resources/image.png]]
+![image](https://user-images.githubusercontent.com/16658223/137232694-47126096-6fd4-46b8-a46f-d150cac759d5.png)
 
 * * *
 
