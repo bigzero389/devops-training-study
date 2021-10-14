@@ -24,7 +24,12 @@ resource "aws_instance" "dyheo-tf-ansible" {
       user = "ec2-user"
       private_key = "${file("~/.ssh/dyheo-histech-2.pem")}"
     }
-    inline = ["echo 'inline must be in it'"]
+    inline = [
+      "echo 'repository set'",
+      "sudo yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm",
+      "sudo yum update -y",
+      "sudo yum install python python-devel python-pip openssl ansible git nodejs npm -y"
+    ]
   }
   provisioner "local-exec" {
     command = "echo '[thirdAnsibleInventory] \n${self.public_ip}' > ./thirdAnsibleInventory"
