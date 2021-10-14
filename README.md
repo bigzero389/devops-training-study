@@ -139,14 +139,22 @@ echo "HelloWorld App Download to Home"
 wget https://raw.githubusercontent.com/yogeshraheja/Effective-DevOps-with-AWS/master/Chapter02/helloworld.js -O /home/ec2-user/helloworld.js
 
 ## Amazon Linux 2 epel enable
-sudo yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+https://thecodecloud.in/ansible-installation-configuration-amazon-linux-ec2-instance-aws/  
+```
+$ wget https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+$ sudo yum install epel-release-latest-7.noarch.rpm -y
+$ sudo yum update -y
+$ sudo yum install python python-devel python-pip openssl ansible -y
+$ sudo amazon-linux-extras install ansible2 -y
+```
 
 ## Ansible note
-ansible-galaxy collection install amazon.aws # ansible amazon install ##?
-ansible --private-key ~/.ssh/dyheo-histech-2.pem ansible-test -m ping
-sudo vi /etc/ansible/host ## [ansible-test] ip등록
-ansible --private-key ~/.ssh/dyheo-histech-2.pem '3.36.115.214' -a 'df -h'
-ansible-playbook helloworld.yml --private-key ~/.ssh/dyheo-histech-2.pem -e target='3.36.115.214' --list-hosts
-ansible-playbook helloworld.yml --private-key ~/.ssh/dyheo-histech-2.pem -e target='3.36.115.214' --check
-ansible-playbook helloworld.yml --private-key ~/.ssh/dyheo-histech-2.pem -e target='3.36.115.214' # 실행.
-ansible-playbook helloworld.yml --private-key ~/.ssh/dyheo-histech-2.pem -e target=ansible-test
+ansible-galaxy init [project_name]  
+ansible-galaxy collection install amazon.aws # ansible amazon install ##?  
+ansible --private-key ~/.ssh/dyheo-histech-2.pem ansible-test -m ping  
+sudo vi /etc/ansible/host ## [ansible-test] ip등록  
+ansible --private-key ~/.ssh/dyheo-histech-2.pem '3.36.115.214' -a 'df -h'  
+ansible-playbook helloworld.yml --private-key ~/.ssh/dyheo-histech-2.pem -e target='3.36.115.214' --list-hosts  
+ansible-playbook helloworld.yml --private-key ~/.ssh/dyheo-histech-2.pem -e target='3.36.115.214' --check  
+ansible-playbook helloworld.yml --private-key ~/.ssh/dyheo-histech-2.pem -e target='3.36.115.214' # 실행.  
+ansible-playbook helloworld.yml --private-key ~/.ssh/dyheo-histech-2.pem -e target=ansible-test  
