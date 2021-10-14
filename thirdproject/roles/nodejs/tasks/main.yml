@@ -1,0 +1,26 @@
+---
+# tasks file for nodejs
+- name: EPEL download 
+  shell: |
+    wget https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+    yum install -y epel-release-latest-7.noarch.rpm 
+    yum update -y
+    yum install -y python python-devel python-pip openssl ansible 
+    amazon-linux-extras install -y ansible2 
+
+#- name: EPEL Repository install
+#  yum:
+#    name: EPEL
+#    enablerepo: epel-release-latest-7.noarch.rpm 
+#    state: installed
+
+- name: Installing node and npm
+  yum:
+    name: "{{ item }}"
+    enablerepo: epel
+    state: installed
+  with_items:
+    - nodejs
+    - npm
+    
+
