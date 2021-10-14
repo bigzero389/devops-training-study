@@ -142,6 +142,7 @@ wget https://raw.githubusercontent.com/yogeshraheja/Effective-DevOps-with-AWS/ma
 sudo yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
 
 ## Ansible note
+ansible-galaxy init [project_name]
 ansible-galaxy collection install amazon.aws # ansible amazon install ##?
 ansible --private-key ~/.ssh/dyheo-histech-2.pem ansible-test -m ping
 sudo vi /etc/ansible/host ## [ansible-test] ip등록
