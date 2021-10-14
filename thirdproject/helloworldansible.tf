@@ -26,9 +26,8 @@ resource "aws_instance" "dyheo-tf-ansible" {
     }
     inline = [
       "echo 'repository set'",
-      "sudo yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm",
-      "sudo yum update -y",
-      "sudo yum install python python-devel python-pip openssl ansible git nodejs npm -y"
+      "sudo yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm -y",
+      "sudo yum update -y"
     ]
   }
   provisioner "local-exec" {

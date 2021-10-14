@@ -1,0 +1,15 @@
+---
+# tasks file for preconfig
+- name: Installing node and npm
+  yum:
+    name: "{{ item }}"
+    enablerepo: epel
+    state: installed
+  with_items:
+    - python
+    - python-devel
+    - python-pip
+    - openssl
+    - ansible
+    - nodejs
+    - npm
