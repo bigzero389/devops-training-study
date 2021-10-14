@@ -27,14 +27,10 @@ resource "aws_instance" "dyheo-tf-ansible-server" {
     inline = [
       "echo 'repository set'",
       "sudo yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm -y",
-      "sudo yum update -y"
+      "sudo yum update -y",
+      "sudo yum install -y ansible git",
+      "sudo ansible-pull -U https://github.com/largezero/DevOps-Training-Ansible.git -e target=localhost helloworld.yml"
     ]
-  }
-  provisioner "local-exec" {
-    command = "echo '[thirdAnsibleInventory] \n${self.public_ip}' > ./thirdAnsibleInventory"
-  }
-  provisioner "local-exec" {
-    command = "ansible-playbook helloworld.yml -i thirdAnsibleInventory --private-key='~/.ssh/dyheo-histech-2.pem'"
   }
 }
 
