@@ -39,5 +39,5 @@ resource "aws_instance" "dyheo-tf-ansible" {
 }
 
 output "dyheo-tf-ansible-server" {
-  value = "{aws_instance.dyheo-tf-ansible-server.public_ip}"
+  value = "${aws_instance.dyheo-tf-ansible-server.public_ip}"
 }
