@@ -1,0 +1,21 @@
+---
+# tasks file for jenkins
+- name: Add Jenkins repository
+  shell: sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat/jenkins.repo
+
+- name: Import Jenkins GPG key
+  rpm_key:
+    state: present
+    key: https://jenkins-ci.org/redhat/jenkins-ci.org.key
+
+- name: Install Jenkins
+  yum:
+    name: jenkins-2.99
+    enablerepo: jenkins
+    state: present
+
+- name: Start Jenkins
+  service:
+    name: jenkins
+    enabled: yes
+    state: started

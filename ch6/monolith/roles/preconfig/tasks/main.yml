@@ -1,13 +1,16 @@
 ---
 # tasks file for preconfig
-- name: Installing platform applications
+- name: Installing node and npm
   yum:
     name: "{{ item }}"
     enablerepo: epel
     state: installed
   with_items:
-    - httpd 
-    - docker
-    - git 
-    - curl
-
+#    - python
+#    - python-devel
+#    - python-pip
+#    - ansible
+    - openssl
+    - nodejs
+    - npm
+    - java

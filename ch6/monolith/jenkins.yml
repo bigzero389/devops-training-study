@@ -2,4 +2,5 @@
 - hosts: "{{ target | default('inventory') }}"
   become: yes
   roles:
-    - monolith
+    - preconfig
+    - jenkins
