@@ -156,7 +156,92 @@ ansible-galaxy collection install amazon.aws # ansible amazon install ##?
 ansible --private-key ~/.ssh/dyheo-histech-2.pem ansible-test -m ping  
 sudo vi /etc/ansible/host ## [ansible-test] ip등록  
 ansible --private-key ~/.ssh/dyheo-histech-2.pem '3.36.115.214' -a 'df -h'  
-ansible-playbook helloworld.yml --private-key ~/.ssh/dyheo-histech-2.pem -e target='3.36.115.214' --list-hosts  
-ansible-playbook helloworld.yml --private-key ~/.ssh/dyheo-histech-2.pem -e target='3.36.115.214' --check  
-ansible-playbook helloworld.yml --private-key ~/.ssh/dyheo-histech-2.pem -e target='3.36.115.214' # 실행.  
-ansible-playbook helloworld.yml --private-key ~/.ssh/dyheo-histech-2.pem -e target=ansible-test  
+ansible-playbook helloworld.yml --private-key ~/.ssh/dyheo-histech-2.pem --user ec2-user -e target='3.36.115.214' --list-hosts  
+ansible-playbook helloworld.yml --private-key ~/.ssh/dyheo-histech-2.pem --user ec2-user -e target='3.36.115.214' --check  
+ansible-playbook helloworld.yml --private-key ~/.ssh/dyheo-histech-2.pem --user ec2-user -e target='3.36.115.214' # 실행.  
+ansible-playbook helloworld.yml --private-key ~/.ssh/dyheo-histech-2.pem --user ec2-user -e target=ansible-test  
+
+### ansible.cfg 기본설정 예제 
+* sudo vi /etc/ansible/ansible.cfg  
+```
+[defaults]		//기본 셋팅
+inventory = ./inventory	//현재 디렉토리에 inventory라는 파일을 읽어온다.
+remote_user = hwan		//접속하려는 계정 이름
+ask_pass = false		//접근할때 패스워드를 입력할 것인지
+
+[privilege_escalation]		//root로 접근해야할 경우 설정
+become = true				//sudo = true 라고 생각하시면 됩니다.
+become_method = sudo
+become_user = root
+become_ask_pass = false
+
+[all:vars]		//전역 변수식으로 모든 host들에게 적용할 때
+ansible_user: admin
+ansible_password: password
+ansible_connection: httpapi  # REST API connection method, ssh 인 경우 안 넣어도 된다.
+
+[webserver]		//하나의 호스트에만 적용시킬 때
+ansible_host: 10.0.0.1
+ansible_user: admin
+ansible_password: password
+ansible_connection: network_cli
+```
+
+### ./inventory 설정 예제
+```
+mail.example.com	//이렇게 하면 Ad-hoc이나 Playbook에서 해당 호스트 네임으로 명령어 실행가능
+
+//호스트 네임과 IP주소로 설정 가능
+
+[webservers]
+192.168.0.5
+192.168.0.6
+
+[dbservers]
+one.example.com
+two.example.com
+three.example.com
+
+[nossh]
+nossh.example.com:5050	//기본 ssh포트를 사용하지 않는다면 이런식으로도 설정 가능
+
+[webservers2]
+www[01:50].example.com	//저런식으로 for문 처리를 통해 01 ~ 50 번까지의 이름을 묶을 수 있다.
+
+[databases2]
+db-[a:f].example.com	//알파벳 또한 가능
+
+//호스트 변수
+[atlanta]
+host1 http_port=80 maxRequestsPerChild=808
+//해당 호스트 네임에 이런식으로 정의해줄 수 있다.
+
+host2 http_port=303 maxRequestsPerChild=909
+//이렇게 정의한 호스트들을 atlanta라는 묶음으로 사용한다는 뜻
+
+
+//그룹 변수
+[atlanta]
+host1
+host2
+
+[atlanta:vars]	//그룹 자체를 기준으로 변수를 부여한다.
+ntp_server=ntp.atlanta.example.com
+proxy=proxy.atlanta.example.com
+
+
+//그룹 그룹 묶기
+[atlanta]
+host1
+host2
+
+[raleigh]
+host2
+host3
+
+[southeast:children] // :children 키워드를 이용해 그룹끼리 묶을 수 있다.
+atlanta
+raleigh
+```
+
+

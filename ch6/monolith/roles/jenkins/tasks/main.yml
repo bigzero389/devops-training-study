@@ -1,16 +1,16 @@
 ---
 # tasks file for jenkins
 - name: Add Jenkins repository
-  shell: sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat/jenkins.repo
+  shell: wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat/jenkins.repo
 
 - name: Import Jenkins GPG key
   rpm_key:
     state: present
-    key: https://jenkins-ci.org/redhat/jenkins-ci.org.key
+    key: https://pkg.jenkins.io/redhat-stable/jenkins.io.key
 
 - name: Install Jenkins
   yum:
-    name: jenkins-2.99
+    name: jenkins
     enablerepo: jenkins
     state: present
 
@@ -19,3 +19,16 @@
     name: jenkins
     enabled: yes
     state: started
+
+- name: Wait for 30 seconds for warming up Jenkins start
+  pause:
+    seconds: 30
+
+- name: init password jenkin
+  shell: /bin/cat /var/lib/jenkins/secrets/initialAdminPassword
+  changed_when: false
+  register: result
+
+- name: print init password jenkins
+  debug:
+    var: result.stdout

@@ -62,10 +62,11 @@ resource "aws_instance" "dyheo-tf-ec2-01" {
       "sudo yum update -y"
     ]
   }
-  ## ANSIBLE playbook 을 삽입하는 경우 여기를 수정한다.
+  ## ANSIBLE inventory 생성.
   provisioner "local-exec" {
-    command = "echo '[inventory] \n${self.public_ip}' > ./inventory"
+    command = "echo '[ec2] \n${self.public_ip} \n\n[jenkins_port] \n8080' > ./inventory"
   }
+  ## ANSIBLE playbook 을 삽입하는 경우 여기를 수정한다.
   provisioner "local-exec" {
     command = "ansible-playbook --private-key='~/.ssh/dyheo-histech-2.pem' --user ec2-user -i inventory jenkins.yml"
   }

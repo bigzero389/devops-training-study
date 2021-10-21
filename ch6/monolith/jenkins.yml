@@ -1,5 +1,5 @@
 ---
-- hosts: "{{ target | default('inventory') }}"
+- hosts: "{{ target | default('ec2') }}"
   become: yes
   roles:
     - preconfig

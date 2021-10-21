@@ -1,6 +1,6 @@
 ---
 # tasks file for preconfig
-- name: Installing node and npm
+- name: Installing platform software
   yum:
     name: "{{ item }}"
     enablerepo: epel
