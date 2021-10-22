@@ -117,6 +117,7 @@ journalctl -u helloworld -f
 
 
 # TerraForm
+```
 terraform init // *.tf 파일에 의한 초기화
 terraform valiate // 검증
 terraform apply [--auto-approve]
@@ -125,9 +126,10 @@ terraform show // view json info
 terraform state list // view resource list
 terraform destroy [-target RESOURCE_TYPE.NAME] // destroy
 terraform show | grep -i public_ip // get public ip
-
+```
 
 ## init script user data
+```
 sudo yum install update
 echo "NVM install"
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
@@ -137,7 +139,7 @@ echo "Check Node Version"
 node -v
 echo "HelloWorld App Download to Home"
 wget https://raw.githubusercontent.com/yogeshraheja/Effective-DevOps-with-AWS/master/Chapter02/helloworld.js -O /home/ec2-user/helloworld.js
-
+```
 ## Amazon Linux 2 epel enable
 https://thecodecloud.in/ansible-installation-configuration-amazon-linux-ec2-instance-aws/  
 ```
@@ -161,8 +163,8 @@ ansible-playbook helloworld.yml --private-key ~/.ssh/dyheo-histech-2.pem --user 
 ansible-playbook helloworld.yml --private-key ~/.ssh/dyheo-histech-2.pem --user ec2-user -e target='3.36.115.214' # 실행.  
 ansible-playbook helloworld.yml --private-key ~/.ssh/dyheo-histech-2.pem --user ec2-user -e target=ansible-test  
 
-### ansible.cfg 기본설정 예제 
-* sudo vi /etc/ansible/ansible.cfg  
+### ansible.cfg 기본설정 예제
+sudo vi /etc/ansible/ansible.cfg  
 ```
 [defaults]		//기본 셋팅
 inventory = ./inventory	//현재 디렉토리에 inventory라는 파일을 읽어온다.
