@@ -6,7 +6,8 @@ provider "aws" {
 
 locals {
   svc_nm = "dyheo"
-  pem_file = "dyheo-histech-2"
+  #pem_file = "dyheo-histech-2"
+  pem_file = "dyheo-histech"
 
   ## EC2 를 만들기 위한 로컬변수 선언
   ami = "ami-0e4a9ad2eb120e054" ## AMAZON LINUX 2
